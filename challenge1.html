@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Grade Generator</title>
+  <style>
+    body {
+      text-align: center; /* Aligns everything to the center */
+      background-color: aliceblue; /*  background color */
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      font-size: 60px;
+    }
+    label, input, button, p {
+      font-size: 30px;
+    }
+    #main {
+      border: solid black;
+      padding: 30px;
+      margin: auto;
+      width: 50%; /* Make container narrower */
+      border-radius: 10px;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <main id="main">
+    <h1>Student Grade Generator</h1>
+    <!-- Form where user enters marks -->
+    <form id="gradeForm">
+      <label for="marks">Enter Marks (0 - 100):</label>
+      <input type="number" id="marks" min="0" max="100" required>
+      <button type="submit">Get Grade</button>
+    </form>
+
+    <!--used to display the result -->
+    <p id="result">Grade: </p>
+  </main>
+
+  <script>
+    // Attach an event listener to the form when it is submitted
+    document.getElementById("gradeForm").addEventListener("submit", function(event) {
+      // Prevent the form from refreshing the page.
+      event.preventDefault();
+
+      // Get the value entered by the user and convert it to a number
+      let marks = parseInt(document.getElementById("marks").value);
+
+      // Variable to hold the final grade
+      let grade;
+
+      // Check if marks are within valid range
+      if (marks < 0 || marks > 100 || isNaN(marks)) {
+        grade = "Invalid input. Please enter a number between 0 and 100.";
+      } 
+      // Apply grading logic using conditions
+      else if (marks > 79) {
+        grade = "A";
+      } else if (marks >= 60) {
+        grade = "B";
+      } else if (marks >= 49) {
+        grade = "C";
+      } else if (marks >= 40) {
+        grade = "D";
+      } else {
+        grade = "E";
+      }
+
+      // Display the grade inside the <p> element
+      document.getElementById("result").textContent = "Grade: " + grade;
+    });
+  </script>
+</body>
+</html>
