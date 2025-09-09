@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Speed Detector</title>
+  </head>
+    <style>
+    body {
+      text-align: center; /* Aligns everything to the center */
+      background-color: aliceblue; /*  background color */
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      font-size: 60px;
+    }
+    label, input, button, p {
+      font-size: 30px;
+    }
+    .card {
+      border: solid black;
+      padding: 30px;
+      margin: auto;
+      width: 50%; /* Make container narrower */
+      border-radius: 10px;
+      background: white;
+    }
+  </style>
+<body>
+  <main class="card">
+    <h1>Speed Detector</h1>
+    <p>Input the speed.</p>
+    <!--form where bthe user enters marks-->
+    <form >
+    <label for="speed">Speed:</label>
+    <input id="speed" type="number" required />
+    <button id="check">Test</button>
+    </form>
+<!--for displaying the result-->
+    <p id="result">points: </p>
+  </main>
+  <script>
+    // input, button, and output elements
+const Inputspeed= document.getElementById("speed");
+const testbutton = document.getElementById("check");
+const output = document.getElementById("result");
+
+
+// function to check speed of the car
+function speedDetector(speed) {
+const limit = 70; // speed limit
+const Point = 5; // every 5km/h above limit = 1 point
+
+
+if (speed <= limit) {
+// if speed is within limit, show Ok
+output.textContent = "Ok";
+} else {
+// calculate points
+const points = Math.floor(
+    (speed - limit) / Point
+);
+
+
+if (points > 12) {
+// rewrite whole content of p tag
+output.textContent = "License suspended";
+} else {
+// show points
+output.textContent = "Points: " + points;
+}
+}
+}
+
+
+// when button is clicked, run the speedDetector function
+testbutton.addEventListener("click", function(event) {
+    event.preventDefault()
+const value = Number(Inputspeed.value); // get the number from input
+speedDetector(value); // call the function with that number
+});
+  </script>
+
+  
+</body>
+</html>
